@@ -2,7 +2,6 @@ import scapy.all as scapy
 from scapy.layers.inet import IP, TCP, UDP
 from threading import Lock, Thread
 from typing import Dict, Tuple, Any
-import logging
 
 # Initialize a lock for thread-safe operations on the packet dictionary
 packet_dict_lock = Lock()
@@ -32,10 +31,7 @@ def capture_packets(packet_dict: Dict[Tuple[str, str], int], stop_event, iface: 
             with packet_dict_lock:
                 packet_dict[(connection, proto)] += 1
 
-    try:
         scapy.sniff(prn=packet_callback, stop_filter=lambda _: stop_event.is_set(), store=False, iface=iface)
-    except Exception as e:
-        logging.error(f"Error capturing packets: {e}")
 
 def start_capture(iface: str, packet_dict: Dict[Tuple[str, str], int], stop_event) -> None:
     """
