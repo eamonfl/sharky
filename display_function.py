@@ -219,17 +219,3 @@ def update_and_display_packets(packet_dict: Dict[str, int], table_placeholder, c
             table_placeholder.text("No matching data found.")
 
         time.sleep(1)
-
-def main() -> None:
-    """
-    Main function to run the Streamlit application.
-    """
-    initialize_session_state()
-    setup_page_config()
-    display_header()
-    interfaces = [iface for iface in scapy.get_if_list() if iface != "lo"]
-    setup_sidebar(interfaces)
-    display_results()
-
-if __name__ == "__main__":
-    main()
