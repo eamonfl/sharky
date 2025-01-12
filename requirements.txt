@@ -1,13 +1,7 @@
 streamlit
-matplotlib
-threading
-time
-collections
-PIL
+matplot
 scapy
 Path
-os
-time
 pandas
 matplotlib
 ipwhois
