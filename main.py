@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image, ImageOps
 from capture_routines import start_capture, stop_capture
-from display_function import update_and_display_packets
+from display_function import update_and_display_packets, prepare_packet_data
 import scapy.all as scapy
 import threading
 from collections import defaultdict
@@ -88,6 +88,16 @@ def display_results():
         update_and_display_packets(packet_dict, table_placeholder, chart_placeholder, total_count_placeholder)
     except Exception as e:
         st.error("Failed to update display.")
+
+    # Add download button after stopping capture
+    if not st.session_state.is_capturing and st.session_state.df is not None:
+        csv = st.session_state.df.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="Download captured packets as CSV",
+            data=csv,
+            file_name='captured_packets.csv',
+            mime='text/csv',
+        )
 
 def main():
     """
