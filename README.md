@@ -1,14 +1,29 @@
-Sharky is my first attempt at creating some public code
-It is a tool to either:
-1. Read a PCAP file.
-2. Read from a network interface.
+Sharky is my first attempt at creating some public code It is a tool to either:
 
-Its not meant to be a replace for a Wireshark/Tshark, its just provides a snapshot of the top talkers(first 1,000 packets)
+Read from a network interface.
+Its not meant to be a replace for a Wireshark/Tshark, its just provides a snapshot of the top talkers on a network
 
-Its uses Streamlit for the Web frontend
+Its uses Streamlit for the Web frontend and scapy to read interface packets
 
-Two install
+-----------------
+Setup & Install:
 
---- 
---- Pip
---- Run examples
+- Clone the repository
+
+- pip install -r requirements
+
+-----------------
+
+Run:
+
+- streamlit run main.py
+
+-----------------
+
+Options:
+
+- Choose the interface to read from then start the capture
+
+- Select the protocol types to ALL, TCP or UDP
+
+- Initial view is limited to 20 lines, this can be increased as necessary
