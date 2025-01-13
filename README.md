@@ -1,4 +1,3 @@
-Sharky is my first attempt at creating some public code It is a tool to either:
 
 # Sharky
 <p align="center">
@@ -6,7 +5,8 @@ Sharky is my first attempt at creating some public code It is a tool to either:
 </p>
 
 ## Introduction
-Read IPv4 packets from a network interface. Its not meant to be a replace for a Wireshark/Tshark, its just provides a snapshot of the top talkers on a network
+Sharky is my first attempt at creating some public code It is a tool to read IPv4 packets from a network interface. 
+It is not meant to be a replace for a Wireshark/Tshark, its just provides a snapshot of the top talkers on a network
 
 Its uses Streamlit for the Web frontend and scapy to read interface packets
 
