@@ -32,13 +32,14 @@ pip install -r requirements
 ```
 
 ## Usage
+1. Run the application
 ```
 bash
 
 streamlit run main.py
 ```
 
-ollow the on-screen instructions:
+2. Follow the on-screen instructions:
 
 - Select Network Interface: Choose the interface you want to capture packets from.
 - Start Capture: Begin capturing packets from the selected interface.
