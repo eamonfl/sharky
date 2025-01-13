@@ -17,17 +17,24 @@ Sharky uses Streamlit for its web-based frontend and Scapy for packet capture.
 
 ## Setup & Installation
 
-- Clone the repository:
+1 Clone the repository:
 ```
+bash
+
 git clone https://github.com/yourusername/sharky.git
 cd sharky
 ```
+2. Install the dependencies
 ```
+bash
+
 pip install -r requirements
 ```
 
 ## Usage
 ```
+bash
+
 streamlit run main.py
 ```
 
@@ -44,6 +51,8 @@ ollow the on-screen instructions:
 - Mirror Port Recommended: Sharky works best when the capturing interface is attached to a mirror (SPAN) port on a network switch.
 - Permission Requirements: Capturing packets is a privileged operation. If you run main.py under a non-root user, you may need to grant your Python binary permission to capture packets:
 ```
+bash
+
 sudo setcap cap_net_raw=eip $(which python)
 ```
 ⚠️ Security Implications: Using setcap can introduce security risks. Use with caution and only if necessary.
