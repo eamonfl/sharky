@@ -17,7 +17,7 @@ Sharky uses Streamlit for its web-based frontend and Scapy for packet capture.
 
 ## Setup & Installation
 
-1 Clone the repository:
+1. Clone the repository:
 ```
 bash
 
