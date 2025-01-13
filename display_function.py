@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 from PIL import Image, ImageOps
 from collections import defaultdict
 from capture_routines import start_capture, stop_capture, packet_dict_lock
-from ipwhois import IPWhois
 import scapy.all as scapy
 from typing import Dict, Any, List, Tuple
 
@@ -86,23 +85,6 @@ def setup_sidebar(interfaces: List[str]) -> str:
 
     return iface
 
-def get_country_from_ip(ip_address: str) -> str:
-    """
-    Retrieves the country associated with an IP address.
-
-    Args:
-        ip_address (str): IP address to lookup.
-
-    Returns:
-        str: Country code or 'Unknown' if not found.
-    """
-    try:
-        obj = IPWhois(ip_address)
-        result = obj.lookup_rdap()
-        return result.get('network', {}).get('country', 'Unknown')
-    except Exception:
-        return 'Unknown'
-
 def prepare_packet_data(packet_dict: Dict[str, int]) -> Tuple[pd.DataFrame, List[Dict[str, Any]], List[int]]:
     """
     Prepares packet data for display.
@@ -138,8 +120,7 @@ def prepare_packet_data(packet_dict: Dict[str, int]) -> Tuple[pd.DataFrame, List
             "Requests": data["Requests"],
             "Responses": data["Responses"],
             "Total Count": data["Count"],
-            "Percentage": f"{(data['Count'] / total_packets) * 100:.2f}%",
-            "Country": get_country_from_ip(connection.split(" <-> ")[1])
+            "Percentage": f"{(data['Count'] / total_packets) * 100:.2f}%"
         }
         for connection, data in merged_connections.items()
     ]
