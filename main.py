@@ -1,11 +1,13 @@
-import streamlit as st
-from PIL import Image, ImageOps
-from capture_routines import start_capture, stop_capture
-from display_function import update_and_display_packets, prepare_packet_data
-import scapy.all as scapy
 import threading
 from collections import defaultdict
 from pathlib import Path  # Use pathlib for cleaner path handling
+
+import streamlit as st
+from PIL import Image, ImageOps
+import scapy.all as scapy
+# Local imports
+from capture_routines import start_capture, stop_capture
+from display_function import update_and_display_packets
 
 # Global Variables
 packet_dict = defaultdict(int)
@@ -70,9 +72,12 @@ def setup_sidebar(interfaces):
         stop_capture(stop_event)
         st.session_state.is_capturing = False
 
-    st.session_state.filter_ip = st.sidebar.text_input("Filter by IP Address", st.session_state.filter_ip)
-    st.session_state.filter_proto = st.sidebar.selectbox("Filter by Protocol", ["TCP & UDP", "TCP", "UDP"])
-    st.session_state.num_entries = st.sidebar.selectbox("Number of Entries", [20, 50, 100, 200])
+    st.session_state.filter_ip = st.sidebar.text_input("Filter by IP Address", \
+                                    st.session_state.filter_ip)
+    st.session_state.filter_proto = st.sidebar.selectbox("Filter by Protocol", \
+                                    ["TCP & UDP", "TCP", "UDP"])
+    st.session_state.num_entries = st.sidebar.selectbox("Number of Entries", \
+                                    [20, 50, 100, 200])
 
     return iface
 
@@ -85,7 +90,8 @@ def display_results():
     chart_placeholder = st.sidebar.empty()
 
     try:
-        update_and_display_packets(packet_dict, table_placeholder, chart_placeholder, total_count_placeholder)
+        update_and_display_packets(packet_dict, table_placeholder, \
+                                chart_placeholder, total_count_placeholder)
     except Exception as e:
         st.error("Failed to update display.")
 

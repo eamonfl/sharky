@@ -1,14 +1,14 @@
+from collections import defaultdict
+from typing import Dict, Any, List, Tuple
 import os
 import time
 import threading
+
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from PIL import Image, ImageOps
-from collections import defaultdict
 from capture_routines import start_capture, stop_capture, packet_dict_lock
-import scapy.all as scapy
-from typing import Dict, Any, List, Tuple
 
 # Global variables
 packet_dict = defaultdict(int)
@@ -79,13 +79,17 @@ def setup_sidebar(interfaces: List[str]) -> str:
         stop_capture(stop_event)
         st.session_state.is_capturing = False
 
-    st.session_state.filter_ip = st.sidebar.text_input("Filter by IP Address", st.session_state.filter_ip)
-    st.session_state.filter_proto = st.sidebar.selectbox("Filter by Protocol", ["TCP & UDP", "TCP", "UDP"])
-    st.session_state.num_entries = st.sidebar.selectbox("Number of Entries", [20, 50, 100, 200])
+    st.session_state.filter_ip = st.sidebar.text_input("Filter by IP Address", \
+                                    st.session_state.filter_ip)
+    st.session_state.filter_proto = st.sidebar.selectbox("Filter by Protocol", \
+                                    ["TCP & UDP", "TCP", "UDP"])
+    st.session_state.num_entries = st.sidebar.selectbox("Number of Entries", \
+                                    [20, 50, 100, 200])
 
     return iface
 
-def prepare_packet_data(packet_dict: Dict[str, int]) -> Tuple[pd.DataFrame, List[Dict[str, Any]], List[int]]:
+def prepare_packet_data(packet_dict: Dict[str, int]) -> Tuple[pd.DataFrame, \
+                                        List[Dict[str, Any]], List[int]]:
     """
     Prepares packet data for display.
 
@@ -93,10 +97,12 @@ def prepare_packet_data(packet_dict: Dict[str, int]) -> Tuple[pd.DataFrame, List
         packet_dict (Dict[str, int]): Dictionary containing packet data.
 
     Returns:
-        Tuple[pd.DataFrame, List[Dict[str, Any]], List[int]]: DataFrame of packet data, top connections, and counts.
+        Tuple[pd.DataFrame, List[Dict[str, Any]], List[int]]: DataFrame 
+        of packet data, top connections, and counts.
     """
     total_packets = 0
-    merged_connections = defaultdict(lambda: {"Count": 0, "Requests": 0, "Responses": 0, "Protocol": ""})
+    merged_connections = defaultdict(lambda: {"Count": 0, "Requests": 0, \
+                                            "Responses": 0, "Protocol": ""})
 
     with packet_dict_lock:
         total_packets = sum(packet_dict.values())
@@ -136,7 +142,8 @@ def prepare_packet_data(packet_dict: Dict[str, int]) -> Tuple[pd.DataFrame, List
 
     return df, sorted_packets[:5], [pkt["Total Count"] for pkt in sorted_packets[:5]]
 
-def display_packet_data(df: pd.DataFrame, connections: List[Dict[str, Any]], counts: List[int], table_placeholder, chart_placeholder) -> None:
+def display_packet_data(df: pd.DataFrame, connections: List[Dict[str, Any]], \
+                        counts: List[int], table_placeholder, chart_placeholder) -> None:
     """
     Displays packet data in a table and pie chart.
 
@@ -177,7 +184,8 @@ def display_packet_data(df: pd.DataFrame, connections: List[Dict[str, Any]], cou
     chart_placeholder.pyplot(fig)
     plt.close(fig)
 
-def update_and_display_packets(packet_dict: Dict[str, int], table_placeholder, chart_placeholder, total_count_placeholder) -> None:
+def update_and_display_packets(packet_dict: Dict[str, int], table_placeholder, \
+                               chart_placeholder, total_count_placeholder) -> None:
     """
     Continuously updates and displays packet data.
 
@@ -193,7 +201,8 @@ def update_and_display_packets(packet_dict: Dict[str, int], table_placeholder, c
         if not df.empty:
             total_count = df["Total Count"].sum()
             total_count_placeholder.markdown(
-                f"<h4 style='color:gray;'>Total Packets Processed: {total_count:,}</h4>", unsafe_allow_html=True
+                f"<h4 style='color:gray;'>Total Packets Processed: \
+                    {total_count:,}</h4>", unsafe_allow_html=True
             )
             display_packet_data(df, connections, counts, table_placeholder, chart_placeholder)
         else:
