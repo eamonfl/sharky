@@ -41,11 +41,11 @@ streamlit run main.py
 
 2. Follow the on-screen instructions:
 
-- Select Network Interface: Choose the interface you want to capture packets from.
-- Start Capture: Begin capturing packets from the selected interface.
-- Filter Options: Filter captured packets by protocol (ALL, TCP, or UDP).
-- Adjust Entries: Initially, the view is limited to 20 lines, but you can increase this as needed.
-- Stop Capture: End the capture session and download the captured packets for offline analysis.
+    - Select Network Interface: Choose the interface you want to capture packets from.
+    - Start Capture: Begin capturing packets from the selected interface.
+    - Filter Options: Filter captured packets by protocol (ALL, TCP, or UDP).
+    - Adjust Entries: Initially, the view is limited to 20 lines, but you can increase this as needed.
+    - Stop Capture: End the capture session and download the captured packets for offline analysis.
 
 ## Notes
 
