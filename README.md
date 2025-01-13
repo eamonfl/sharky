@@ -33,5 +33,5 @@ Its uses Streamlit for the Web frontend and scapy to read interface packets
 ## Notes
 
 - It works best when the capturing interface is attached to a mirror port on a switch
-- If main.py is run under a non-root user then use setcap to allow python to read packets, this is a privileged operation. For example, "sudo setcap cap_net_raw=eip /usr/bin/pythonX.X". Please note there are security implications in doing this
+- If main.py is run under a non-root user then use setcap to allow python to read packets, this is a privileged operation. For example, "sudo setcap cap_net_raw=eip /usr/bin/pythonX.X". Please note there could be security implications in doing this
 - Tested on Ubuntu 24.10 and Debian 12
