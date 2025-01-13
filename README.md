@@ -1,38 +1,37 @@
 Sharky is my first attempt at creating some public code It is a tool to either:
 
-Read IPv4 packets from a network interface.
-Its not meant to be a replace for a Wireshark/Tshark, its just provides a snapshot of the top talkers on a network
+# Sharky
+<p align="center">
+  <img src="https://github.com/eamonfl/sharky/blob/master/images/sharky.jpg" width="350" title="hover text">
+</p>
+
+## Introduction
+Read IPv4 packets from a network interface. Its not meant to be a replace for a Wireshark/Tshark, its just provides a snapshot of the top talkers on a network
 
 Its uses Streamlit for the Web frontend and scapy to read interface packets
 
------------------
-Setup & Install:
+## Setup & Instal
 
-- Clone the repository
+Clone the repository
 
-- pip install -r requirements
+pip install -r requirements
 
------------------
+## Run
 
-Run:
+streamlit run main.py
 
-- streamlit run main.py
+## Options
 
------------------
+Choose the interface to read from then start the capture
 
-Options:
+Select the protocol types to ALL, TCP or UDP
 
-- Choose the interface to read from then start the capture
+Initial view is limited to 20 lines, this can be increased as necessary
 
-- Select the protocol types to ALL, TCP or UDP
+Stop capture allows a download of the captured packets
 
-- Initial view is limited to 20 lines, this can be increased as necessary
+## Notes
 
-- Stop capture allows a download of the captured packets
-
--------------------
-
-Notes:
-
-- It works best when the capturing interface is attached to a mirror port on a switch
-- If main.py is run under a non-root user then use setcap to allow python to read packets, this is a privileged operation. For example, "sudo setcap cap_net_raw=eip /usr/bin/pythonX.X". Please note there are security implications in doing this
+It works best when the capturing interface is attached to a mirror port on a switch
+If main.py is run under a non-root user then use setcap to allow python to read packets, this is a privileged operation. For example, "sudo setcap cap_net_raw=eip /usr/bin/pythonX.X". Please note there are security implications in doing this
+tested on Ubuntu 24.10 and Debian 12
