@@ -47,6 +47,10 @@ streamlit run main.py
     - Adjust Entries: Initially, the view is limited to 20 lines, but you can increase this as needed.
     - Stop Capture: End the capture session and download the captured packets for offline analysis.
 
+### Screenshot
+
+![Sharky Screenshot](https://github.com/user-attachments/assets/5f2a0095-f2f4-4d70-b6ff-852a7510a52b)
+
 ## Notes
 
 - Mirror Port Recommended: Sharky works best when the capturing interface is attached to a mirror (SPAN) port on a network switch.
